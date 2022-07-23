@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FormControl,  InputLabel, Input, Button} from '@mui/material';
 
 
-function Items() {
+function CreateItems() {
   const [itemInfo, setItemInfo] = useState({name:""})
   const [items, setItems] = useState([])
 
@@ -33,4 +33,4 @@ function Items() {
   )
 }
 
-export default Items;
+export default CreateItems;
