@@ -1,6 +1,6 @@
 import './App.css';
-import Items from './components/Items';
-import Xapikeys from './components/Xapikeys';
+import Items from './components/CreateItems';
+import Xapikeys from './components/CreateUser';
 
 
 function App() {
