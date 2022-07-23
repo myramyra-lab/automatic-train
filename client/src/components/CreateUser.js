@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { FormControl,  InputLabel, Input, Button, FormHelperText} from '@mui/material';
 
 
-function Xapikeys() {
+function CreateUser() {
   const [userInfo, setUserInfo] = useState({email:""})
 
   function registerUsers(e){
@@ -60,4 +60,4 @@ function Xapikeys() {
   )
 }
 
-export default Xapikeys
+export default CreateUser;
