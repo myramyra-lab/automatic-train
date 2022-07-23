@@ -1,15 +1,15 @@
 import './App.css';
-import Items from './components/CreateItems';
-import Xapikeys from './components/CreateUser';
+import CreateItems from './components/CreateItems';
+import CreateUser from './components/CreateUser';
 
 
 function App() {
   return (
     <div className="App">
 
-        <Xapikeys/>
+        <CreateUser/>
         <br></br>
-        <Items/>
+        <CreateItems/>
     </div>
   );
 }
