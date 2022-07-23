@@ -1,10 +1,8 @@
-const users=require('../data').users;
+const users=require('../src/database/data').users;
 const MAX = process.env.API_MAX || 25 //TODO
-const {saveToDatabase} = require("../src/database/utils")
 
 
 const genKey = () =>{
-  //create a base string that is always 30 chars long a-z 0-9
   return [...Array(30)]
   .map((e)=>((Math.random()*36) | 0).toString(36))
   .join('');
@@ -19,24 +17,26 @@ const createUser = (_email, req)=>{
     host:req.headers.origin,
     usage:[{date:today, count:0}]
   }
+  console.log(users)
+  console.log(user)
   users.push(user)
-  saveToDatabase(users)
+  // saveToDatabase(users)
   return user;
 
 }
 const validateKey = (req,res,next)=>{
   //get the API key from the host
   let host = req.headers.origin;
+  // let api_key=req.query.api_key; //1. with querystring
+
   let api_key=req.header('x-api-key');
   let account = users.find(
     (user)=>user.host == host && user.api_key == api_key
   );
-    // find() returns an object or undefined
   if (account) {
-    //good match
-    //check the usage
     let today = new Date().toISOString().split('T')[0];
     let usageIndex = account.usage.findIndex((day) => day.date == today);
+    //a request today
     if (usageIndex >= 0) {
       //already used today
       if (account.usage[usageIndex].count >= MAX) {
@@ -48,7 +48,7 @@ const validateKey = (req,res,next)=>{
           },
         });
       } else {
-        //have not hit todays max usage
+        //has not hit todays max usage
         account.usage[usageIndex].count++;
         console.log('Good API call', account.usage[usageIndex]);
         next();

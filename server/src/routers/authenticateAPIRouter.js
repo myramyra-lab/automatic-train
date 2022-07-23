@@ -3,6 +3,8 @@ var router = express.Router();
 const {expressjwt: jwt} = require("express-jwt");
 const jwksRsa = require("jwks-rsa")
 const app = express();
+const API = require('../../middleware/apikeys')
+
 
 
 let authenticationController = require("../controllers/authenticateAPIController")
@@ -13,9 +15,11 @@ const { application } = require("express");
 
 router.get("/", keyStore)
 router.get("./", authenticationController.homePage)
-router.get("/:id",authenticationController.getById)
+router.get("/keys/:id",authenticationController.getById)
 router.use(middleware)
-router.get("/",authenticationController.getAll)
+router.get("/keys",authenticationController.getAll)
+// router.get("/items", API.validateKey,authenticationController.getItems)
+router.get("/items", authenticationController.getItems)
 
 
 
@@ -33,6 +37,7 @@ router.get("/",authenticationController.getAll)
 // })
 // app.use(checkJwt)
 //the checkJwt middleware will intercept post requests only
+router.post("/createitem", authenticationController.createItem)
 router.post("/register",authenticationController.create)
 
 module.exports = router;

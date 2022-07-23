@@ -1,0 +1,4 @@
+1. random key generation on refreshing
+3. creating new data files in server.js
+4. No account (suspectedly) because of random genkey()
+6.Undefined API key when using session storage

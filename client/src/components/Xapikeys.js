@@ -1,6 +1,5 @@
 import React,{useState} from 'react';
 import { FormControl,  InputLabel, Input, Button, FormHelperText} from '@mui/material';
-import axios from 'axios'
 
 
 function Xapikeys() {
@@ -10,12 +9,14 @@ function Xapikeys() {
     e.preventDefault();
     console.log("submitted")
     const data = {email:userInfo.email}
-    // axios.post(`http://localhost:8000/api/register`,data)
-    // .then(res=>{setUserInfo(res.data)})
-    // .catch((error)=>{console.log(error)})
 
-    let url = "http://localhost:8000/api/register"
-    let h = new Headers();
+    let key = (data.api_key)
+    // let key = sessionStorage.getItem('API-KEy')
+    console.log(key)
+  
+
+    let url = `http://localhost:8000/api/register?api_key=${key}`
+    let h = new Headers(); 
     if(data){
       h.append('Content-Type','application/json');
     }
@@ -27,10 +28,25 @@ function Xapikeys() {
     fetch(options)
       .then(response=>response.json())
       .then(data=>
-        setUserInfo(data),
-        window.location.reload()
+        setUserInfo(data)
+        // window.location.reload()
       )
-      .catch((error)=>{console.log(error)})
+      .then(success)
+      .catch(fail)
+
+    function fail(err){
+      console.log(err.message)
+    }
+    function success(content){
+      if(content){
+        if('error' in content){
+          fail(content.error);
+          return;
+        }
+        // sessionStorage.setItem('API-KEy',data.api_key)
+      }
+    }
+
     }
   return (
     <div>

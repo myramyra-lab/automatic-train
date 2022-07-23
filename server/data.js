@@ -1,2 +1,0 @@
-[{"_id":74874,"api_key":"h8jqKQMO6","email":"myramyracreator@gmail.com","host":"http://127.0.0.1:3000","usage":[{"date":"2022-15-07","count":17}]},
-{"_id":1657911348609,"api_key":"0d5f3byoiusg46wqacgqnkgqouik8f","email":"wamwithamuita@gmail.com","host":"http://localhost:3000","usage":[{"date":"2022-07-15","count":0}]}]

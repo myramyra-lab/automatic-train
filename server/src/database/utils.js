@@ -5,4 +5,7 @@ const saveToDatabase = (users)=>{
     encoding:"utf-8",
   })
 }
-module.exports={saveToDatabase}
+const saveItemsToDatabase=(items)=>{
+  fs.writeFileSync("./db.json", JSON.stringify(items, null,2),(err)=>{console.log(err)})
+}
+module.exports={saveToDatabase, saveItemsToDatabase}
